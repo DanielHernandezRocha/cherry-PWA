@@ -1,5 +1,5 @@
 const CACHE_NAME = "cherry-pwa-1.0";
-const GH_REPO = "/cherry-PWA"; // ← exactamente como aparece en la URL de GitHub
+const GH_REPO = "/cherry-PWA"; // ← exactamente como aparece en la URL
 
 const urlsToCache = [
   `${GH_REPO}/`,
@@ -20,6 +20,6 @@ self.addEventListener("fetch", e => {
   e.respondWith(
     caches.match(e.request).then(response => {
       return response || fetch(e.request);
-    }).catch(() => caches.match(`${GH_REPO}/offline.html`)) // ← ruta absoluta al repo
+    }).catch(() => caches.match(`${GH_REPO}/offline.html`))
   );
 });
