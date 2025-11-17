@@ -1,10 +1,12 @@
 const CACHE_NAME = "cherry-pwa-1.0";
+const GH_REPO = "/cherry-PWA"; // ← exactamente como aparece en la URL de GitHub
+
 const urlsToCache = [
-  "/",
-  "index.html",
-  "offline.html",
-  "css/style.css",
-  "js/main.js",
+  `${GH_REPO}/`,
+  `${GH_REPO}/index.html`,
+  `${GH_REPO}/offline.html`,
+  `${GH_REPO}/css/style.css`,
+  `${GH_REPO}/js/main.js`,
   "https://cdn-icons-png.flaticon.com/512/686/686351.png"
 ];
 
@@ -18,6 +20,6 @@ self.addEventListener("fetch", e => {
   e.respondWith(
     caches.match(e.request).then(response => {
       return response || fetch(e.request);
-    }).catch(() => caches.match("offline.html"))
+    }).catch(() => caches.match(`${GH_REPO}/offline.html`)) // ← ruta absoluta al repo
   );
 });
